@@ -1,0 +1,49 @@
+package util.xml;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+/**
+ *	 Classe InfoXml,obtem o mapeamento do arquivo xml para um objeto java. 
+ * */
+@XmlRootElement(name = "info")
+@XmlType(propOrder = { "ip", "port", "data" })
+public class InfoXml
+{
+    private String ip;
+    private String data;
+    private String port;
+    
+	public String getIp() {
+		return ip;
+	}
+	
+	 @XmlElement
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	 @XmlElement
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	 @XmlElement
+	public void setPort(String port) {
+		this.port = port;
+	}
+    
+    
+}

@@ -1,0 +1,20 @@
+package testing;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class XmlParseData 
+{
+
+	private static final String XML_FILE = "src/testing/data/testModel.xml";
+	
+	@Test
+	public void test() 
+	{
+		
+		
+		fail("Not yet implemented");
+	}
+
+}

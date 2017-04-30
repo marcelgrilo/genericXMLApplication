@@ -1,0 +1,13 @@
+<infoList>
+	<info>
+		<ip>242.157.159.46</ip>
+		<port>2581</port>
+		<data>lorem</data>
+	</info>
+	
+	<info>
+		<ip>159.214.165.254</ip>
+		<port>5246</port>
+		<data>ipsum</data>
+	</info>
+</infoList>

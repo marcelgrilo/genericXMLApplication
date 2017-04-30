@@ -1,0 +1,12 @@
+package model;
+
+
+@Entity
+public class Client 
+{
+    @Id
+    @GeneratedValue
+	private int Id;
+	private string name;
+	private string 
+}

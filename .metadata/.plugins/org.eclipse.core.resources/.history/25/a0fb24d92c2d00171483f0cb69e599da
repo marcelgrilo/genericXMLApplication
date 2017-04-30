@@ -1,0 +1,24 @@
+package control.services;
+
+import java.io.File;
+
+import control.services.Interfaces.IModelFactory;
+import model.Info;
+
+/**
+ * InfoFactory, implementa a factory para o modelo "Info"
+ * */
+public class InfoFactory implements IModelFactory<Info>
+{
+	
+	/* (non-Javadoc)
+	 * @see control.services.Interfaces.IModelFactory#CreateModel(java.io.File)
+	 */
+	@Override
+	public Info CreateModel(File XMLFile) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

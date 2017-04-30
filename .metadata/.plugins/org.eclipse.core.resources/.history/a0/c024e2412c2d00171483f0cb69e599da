@@ -1,0 +1,11 @@
+package control.services.Interfaces;
+
+import java.io.File;
+
+/**
+ * ModelF
+ * */
+public interface IModelFactory<T> 
+{
+	public T CreateModel(File XMLFile);
+}

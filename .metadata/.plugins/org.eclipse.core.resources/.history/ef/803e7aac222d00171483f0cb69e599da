@@ -1,0 +1,27 @@
+package model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Info
+{
+    @Id
+    @GeneratedValue
+    private int Id;
+    
+    private String ip;
+    private String data;
+    private String port;
+    
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+    
+    
+}

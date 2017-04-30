@@ -1,0 +1,19 @@
+package testing;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import control.services.ServerFileReader;
+
+public class SaveCompactedXMLTesting {
+
+	@Test
+	public void test() {
+		
+		//ServerFileReader sfr = new ServerFileReader("");
+		
+		fail("Not yet implemented");
+	}
+
+}

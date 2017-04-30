@@ -1,0 +1,8 @@
+package control.services.Interfaces;
+
+import java.io.File;
+
+public interface IUnpack {
+
+	File Unpack(File compressedFile);
+}

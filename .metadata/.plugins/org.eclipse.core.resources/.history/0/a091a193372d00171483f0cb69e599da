@@ -1,0 +1,59 @@
+package testing;
+
+import static org.junit.Assert.*;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hamcrest.collection.IsEmptyCollection;
+import org.junit.Test;
+
+import model.Info;
+import services.InfoFactory;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+/**
+ * Teste para a criacao de modelos do po Info.
+ * */
+public class InfoFactoryCreateModelsTest 
+{
+	
+	InfoFactory factory = new InfoFactory();
+	
+	private static final String XML_FILE = "src/testing/data/testModel.xml";
+	
+	
+	@Test
+	public void test() 
+	{
+		Info i1 = new Info();
+		i1.setIp("242.157.159.46");
+		i1.setPort("2581");
+		i1.setData("lorem");
+		
+		Info i2 = new Info();
+		i1.setIp("159.214.165.254");
+		i1.setPort("5246");
+		i1.setData("ipsum");
+		
+		List<Info> expectedResult = new ArrayList<Info>();
+		expectedResult.add(i1);
+		expectedResult.add(i2);
+		List<Info> result = factory.CreateModels(new File(XML_FILE));
+		
+        
+
+
+        assertThat(result, hasSize(2));
+
+        assertThat(result.size(), is(2));
+		
+	}
+
+}

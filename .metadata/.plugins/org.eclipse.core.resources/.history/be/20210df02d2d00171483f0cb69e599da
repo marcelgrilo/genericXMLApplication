@@ -1,0 +1,14 @@
+package control.services.Interfaces;
+
+import java.io.File;
+
+/**
+ * @author marcel
+ * 
+ * Interface para descompactacao dos arquivos xml. 
+ * Cada implementacao desta interface aborda um tipo de descompactacao de arquivos.
+ */
+public interface IUnpack
+{
+	public File Unpack(File compressedFile);
+}

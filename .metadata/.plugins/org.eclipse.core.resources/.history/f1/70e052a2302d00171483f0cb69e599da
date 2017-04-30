@@ -1,0 +1,50 @@
+package services;
+
+import java.io.File;
+import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+import model.Info;
+import model.xml.InfoListXml;
+import services.Interfaces.IModelFactory;
+
+/**
+ * InfoFactory, implementa a factory para o modelo "Info", retornando uma lista de infos.
+ * */
+public class InfoFactory implements IModelFactory<List<Info>, InfoListXml>
+{
+	
+	/**
+	 * Cria o modelo Info a partir do XML utilizando as classes contidas em models.xml
+	 * */
+	@Override
+	public synchronized List<Info> CreateModels(File XMLFile) 
+	{
+
+		 JAXBContext context;
+		try {
+			context = JAXBContext.newInstance(InfoListXml.class);
+			 Unmarshaller um = context.createUnmarshaller();
+			 InfoListXml infoList = (InfoListXml)um.unmarshal(XMLFile);
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		 
+		 
+		 
+		return Convert((InfoListXml)um.unmarshal(XMLFile)) ;
+	}
+
+	@Override
+	public List<Info> Convert(InfoListXml xmlModel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

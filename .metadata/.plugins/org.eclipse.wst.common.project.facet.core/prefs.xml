@@ -1,0 +1,14 @@
+<root>
+  <facet id="jpt.jaxb">
+    <node name="libprov">
+      <node name="last-provider-used">
+        <attribute name="2.2" value="jaxb-no-op-library-provider"/>
+      </node>
+    </node>
+  </facet>
+  <facet id="jpt.jpa">
+    <node name="libprov">
+      <node name="last-provider-used"/>
+    </node>
+  </facet>
+</root>

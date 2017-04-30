@@ -1,0 +1,24 @@
+package util.xml;
+
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAccessType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class InfoListXml 
+{
+	public List<InfoXml> getInfoXmls() {
+		return infoXmls;
+	}
+
+	public void setInfoXmls(List<InfoXml> infoXmls) {
+		this.infoXmls = infoXmls;
+	}
+
+	protected List<InfoXml> infoXmls;
+	
+	
+}

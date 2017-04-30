@@ -1,0 +1,10 @@
+package control.services;
+
+/**
+ * InfoFactory
+ * 
+ * */
+public class InfoFactory implements IModelFactory
+{
+	
+}

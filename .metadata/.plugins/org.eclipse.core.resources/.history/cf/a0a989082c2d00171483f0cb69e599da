@@ -1,0 +1,9 @@
+package control.services.Interfaces;
+
+/**
+ * ModelF
+ * */
+public interface IModelFactory 
+{
+
+}

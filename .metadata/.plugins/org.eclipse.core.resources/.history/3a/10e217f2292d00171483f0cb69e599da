@@ -1,0 +1,33 @@
+package testing;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import util.xml.InfoListXml;
+
+public class XmlParseData 
+{
+
+	private static final String XML_FILE = "src/testing/data/testModel.xml";
+	
+	private static InfoListXml infoList;
+	
+	public synchronized InfoListXml getInfoList()
+	{
+		if(infoList == null)
+		{
+			
+		}	
+		return infoList;
+	}
+	
+	@Test
+	public void test() 
+	{
+		
+		
+		fail("Not yet implemented");
+	}
+
+}
