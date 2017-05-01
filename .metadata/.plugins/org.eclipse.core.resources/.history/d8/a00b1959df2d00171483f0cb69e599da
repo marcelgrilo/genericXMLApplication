@@ -1,0 +1,108 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import control.dao.DataSource;
+import control.dao.ServerDao;
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+import model.app.Server;
+import view.ConfigView;
+import view.interfaces.IView;
+
+public class ConfigController implements  ActionListener, IViewController, IUIController {
+	
+	private List<Server> serverList;
+	private EntityManager em = DataSource.createEntityManager();
+	private ServerDao serverDao = new ServerDao(em);
+	
+	private IUIController parent;
+	
+	private ConfigView configView;
+	
+	public ConfigController(IUIController parent)
+	{
+		serverList = findAll();
+		this.parent = parent;
+		configView = new ConfigView(this);
+	}
+	
+    public List<Server> findAll(){
+        return serverDao.findAll();
+    }
+    
+	@Override
+	public IUIController getParent() {
+		return parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+			
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return this.configView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String selected = configView.GetListSelectedValue(); 
+		if(e.getActionCommand().equals("ADD"))
+		{
+			ADD(selected);
+		}
+		else if(e.getActionCommand().equals("DEL"))
+		{	
+			DEL(selected);
+		}
+		serverList = findAll();
+		configView.UpdateServerList(serverList);
+	}
+	
+	private void DEL(String selected) {
+		int serverIdToDelete = -1;
+		for (Server server : serverList) {
+			if(server.getServer().equals(selected))
+			{
+				serverIdToDelete = server.getId();
+			}
+		}
+		if(serverIdToDelete == -1){
+			return;
+		}
+		else{			
+			serverDao.delete(serverIdToDelete);
+		}		
+	}
+
+	private void ADD(String selected)
+	{
+		boolean containsEquals = false;
+		for (Server server : serverList) {
+			if(server.getServer().equals(selected))
+			{
+				containsEquals = true;
+			}
+		}
+		if(containsEquals){
+			return;
+		}
+		else{
+			Server newServer = new Server();
+			newServer.setServer(selected);
+			serverDao.create(newServer);
+		}		
+	}
+	
+}

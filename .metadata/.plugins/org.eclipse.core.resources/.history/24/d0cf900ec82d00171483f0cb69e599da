@@ -1,0 +1,52 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+import view.interfaces.IView;
+
+public class ConfigController implements  ActionListener, IViewController, IUIController {
+	
+	private List<String> serversList;
+	
+	private IUIController parent;
+	
+	public ConfigController(IUIController parent)
+	{
+		this.parent = parent;
+	}
+
+	@Override
+	public IUIController getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IView getView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+ 
+}

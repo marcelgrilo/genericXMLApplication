@@ -1,0 +1,5 @@
+package model.app;
+
+public class Server {
+
+}

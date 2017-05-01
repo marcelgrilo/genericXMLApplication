@@ -1,0 +1,121 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
+
+import control.dao.DataSource;
+import control.dao.ServerDao;
+import control.ui.interfaces.INotifyable;
+import control.ui.interfaces.IViewController;
+import model.app.Server;
+import view.ConfigView;
+import view.interfaces.IView;
+
+public class ConfigController implements ActionListener, IViewController, INotifyable {
+
+	private List<Server> serverList;
+	private EntityManager em = DataSource.createEntityManager();
+	private ServerDao serverDao = new ServerDao(em);
+
+	private INotifyable parent;
+	private ConfigView configView;
+
+	public ConfigController(INotifyable parent) {
+		this.parent = parent;
+		configView = new ConfigView(this);
+		serverList = findAll();
+		configView.UpdateServerList(serverList);
+	}
+
+	public List<Server> findAll() {
+		return serverDao.findAll();
+	}
+
+	@Override
+	public INotifyable getParent() {
+		return parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return this.configView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("ADD")) {
+			ADD(configView.GetServerName(), configView.GetServerPort(), configView.GetServerUser(),
+					configView.GetServerPass());
+		} else if (e.getActionCommand().equals("DEL")) {
+			DEL(configView.GetListSelectedValue());
+		}
+		serverList = findAll();
+		configView.UpdateServerList(serverList);
+	}
+
+	private void DEL(String selected) {
+		int serverIdToDelete = -1;
+		for (Server server : serverList) {
+			if (server.getUrl().equals(selected)) {
+				serverIdToDelete = server.getId();
+			}
+		}
+		if (serverIdToDelete == -1) {
+			return;
+		} else {
+			serverDao.delete(serverIdToDelete);
+		}
+	}
+
+	private void ADD(String url, String port, String user, String pass) {
+		int portNumber = 0;
+		try {
+			portNumber = Integer.parseInt(port);
+			if (portNumber < 1 || portNumber > 65535) {
+				JOptionPane.showMessageDialog(configView, "A porta deve ser um numero inteiro de 1 a 65535");
+				return;
+			}
+		} catch (NumberFormatException nex) {
+			JOptionPane.showMessageDialog(configView, "A porta deve ser um numero inteiro de 1 a 65535");
+			return;
+		}
+		if (url.length() <= 1) {
+			JOptionPane.showMessageDialog(configView, "Insira um endereço válido");
+			return;
+		}
+
+		boolean containsEquals = false;
+		for (Server server : serverList) {
+			if (server.getUrl().equals(url) && server.getPort() == portNumber && server.getUser().equals(user)
+					&& server.getPassword().equals(pass)) {
+				containsEquals = true;
+			}
+		}
+		if (containsEquals) {
+			return;
+		} else {
+			Server newServer = new Server();
+			newServer.setUrl(url);
+			newServer.setPort(portNumber);
+			newServer.setUser(user);
+			newServer.setPassword(pass);
+			serverDao.create(newServer);
+			configView.Clear();
+		}
+	}
+
+}

@@ -1,0 +1,64 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import control.dao.DataSource;
+import control.dao.ServerDao;
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+import model.app.Server;
+import view.interfaces.IView;
+
+public class ConfigController implements  ActionListener, IViewController, IUIController {
+	
+	private List<ServerDao> serverList;
+	private EntityManager em = DataSource.createEntityManager();
+	private ServerDao serverDao = new ServerDao(em);
+	
+	private IUIController parent;
+	
+	public ConfigController(IUIController parent)
+	{
+		serverList = serverDao.findAll();
+		this.parent = parent;
+	}
+	
+    public List<Server> findAll(){
+        return serverDao.findAll();
+    }
+    
+	@Override
+	public IUIController getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IView getView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+ 
+}

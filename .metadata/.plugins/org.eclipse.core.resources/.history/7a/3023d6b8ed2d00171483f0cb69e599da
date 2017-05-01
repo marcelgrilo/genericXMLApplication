@@ -1,0 +1,48 @@
+package control.ui;
+
+import control.ui.interfaces.INotifyable;
+import model.app.RuntimeData;
+
+public class RuntimeDataController implements Runnable, INotifyable {
+
+	private RuntimeData data;
+	
+	private INotifyable parent;
+	
+	public RuntimeDataController(INotifyable parent)
+	{
+		data = new RuntimeData();
+		this.parent = parent;
+	}
+	
+	@Override
+	public void run() {
+		try {
+			// espera 2 segundos
+			Thread.sleep(2000);
+			
+			
+			parent.notifyController(this, "UpdateData");
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+
+	private void UpdateData()
+	{
+		data.setThreadData(String.format("Threads Used : %1d ", Thread.activeCount()));
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+				
+	}
+
+	@Override
+	public INotifyable getParent() {
+		return this.parent;
+	}
+
+}

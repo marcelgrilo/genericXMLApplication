@@ -1,0 +1,26 @@
+package view;
+
+import java.awt.Component;
+
+import javax.swing.JPanel;
+
+import control.ui.interfaces.IViewController;
+import view.interfaces.IView;
+
+public class MainView extends JPanel implements IView {
+
+	private static final long serialVersionUID = 1L;
+
+	private IViewController controller;
+	
+	public MainView(IViewController controller)
+	{
+		this.controller = controller;
+		}	
+	
+	@Override
+	public Component getViewComponent() {
+		return this;
+	}
+
+}

@@ -1,0 +1,29 @@
+package control;
+
+import control.ui.interfaces.INotifyable;
+
+public class ServiceController implements Runnable {
+
+	private INotifyable controller;
+	
+	private boolean isRunning = false;;
+	
+	public ServiceController(INotifyable controller)
+	{
+		this.controller = controller;
+		
+		
+	}
+	
+	
+	
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+}

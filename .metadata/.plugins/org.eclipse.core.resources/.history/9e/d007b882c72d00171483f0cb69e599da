@@ -1,0 +1,5 @@
+package control.dao;
+
+public class ServerDao {
+
+}

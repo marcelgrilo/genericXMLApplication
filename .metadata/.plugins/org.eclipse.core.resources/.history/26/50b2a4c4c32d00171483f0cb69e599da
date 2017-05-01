@@ -1,0 +1,12 @@
+package control.ui;
+
+public class ConfigController implements  {
+	
+	private List<String> serversList;
+	
+	public ConfigController()
+	{
+		
+	}
+ 
+}

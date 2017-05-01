@@ -1,0 +1,11 @@
+package control.dao;
+
+import javax.persistence.EntityManager;
+
+public class ServerDao  extends GenericDao<InfoDao, Integer> {
+
+    public InfoDao(EntityManager entityManager) {
+        super(entityManager);
+    }
+
+}

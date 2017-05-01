@@ -1,0 +1,43 @@
+package control;
+
+import java.util.Date;
+
+import control.ui.interfaces.INotifyable;
+
+public class ServiceController implements Runnable {
+
+	private INotifyable controller;
+	
+	private boolean isRunning;
+		
+	private Date lastExecution;	
+	
+	public ServiceController(INotifyable controller)
+	{
+		this.controller = controller;
+		this.isRunning = false;		
+	}	
+	
+	@Override
+	public void run() {
+		//loop principal
+		while(isRunning)
+		{			
+			double hours = (lastExecution.getTime() - new Date().getTime()) / 1000 / 60 / 60;
+			// a cada 24 horas executa o processamento.
+			if (hours > 24) {
+				
+				
+				
+				// fase de downloads dos arquicos.
+				// fase de descompactação dos arquivos.
+				// fase depersistencia. 
+				
+				lastExecution = new Date();
+			}
+		}			
+	}
+
+	
+	
+}

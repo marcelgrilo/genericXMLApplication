@@ -1,0 +1,31 @@
+package control;
+
+import control.ui.interfaces.INotifyable;
+
+public class ServiceController implements Runnable {
+
+	private INotifyable controller;
+	
+	private boolean isRunning;
+	
+	private ServiceControllerState state;
+	
+	public ServiceController(INotifyable controller)
+	{
+		this.controller = controller;
+		this.isRunning = false;		
+	}
+	
+	
+	@Override
+	public void run() {
+		//loop principal
+		while(isRunning)
+		{
+			
+		}			
+	}
+
+	
+	
+}

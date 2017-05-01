@@ -1,0 +1,80 @@
+package view;
+
+import java.awt.Component;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+import control.ui.interfaces.IViewController;
+import view.interfaces.IView;
+
+public class MainView extends JPanel implements IView {
+
+	private static final long serialVersionUID = 1L;
+
+	private JTextArea log;
+	
+	private JButton startService;
+	private JButton stopService;
+	
+	private JLabel labelThreadsInfo;
+	private JLabel labelMemoryInfo;
+	private JLabel labelDiskInfo;
+	private JLabel labelFilesProcessedInfo;
+	private JLabel labelFilesFailedInfo;
+
+	
+	@SuppressWarnings("unused")
+	private IViewController controller;
+	
+	public MainView(IViewController controller)
+	{
+		this.controller = controller;
+		
+		this.log = new JTextArea();
+		log.setEditable(false);
+		log.setLineWrap(true);		
+		
+		startService = new JButton("Start");
+		startService.setActionCommand("START");
+		startService.addActionListener(this.controller.getActionListener());
+		
+		stopService = new JButton("Stop");
+		stopService.setActionCommand("STOP");
+		stopService.addActionListener(this.controller.getActionListener());
+		
+		
+	}	
+	
+	@Override
+	public Component getViewComponent() {
+		return this;
+	}
+	
+	public void SetThreadsText(String text)
+	{
+		labelThreadsInfo.setText(text);
+	}
+	
+	public void SetMemoryText(String text)
+	{
+		labelMemoryInfo.setText(text);
+	}
+	
+	public void SetTDiskText(String text)
+	{
+		labelDiskInfo.setText(text);
+	}
+	
+	public void SetFilesProcessedText(String text)
+	{
+		labelFilesProcessedInfo.setText(text);
+	}
+	
+	public void SetFilesFailedText(String text)
+	{
+		labelFilesFailedInfo.setText(text);
+	}
+}

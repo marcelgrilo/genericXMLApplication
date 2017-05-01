@@ -1,0 +1,79 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import control.ui.interfaces.INotifyable;
+import control.ui.interfaces.IViewController;
+import view.MainView;
+import view.interfaces.IView;
+
+public class MainController implements ActionListener, IViewController, INotifyable {
+
+	private INotifyable parent;
+
+	private MainView mainView;
+
+	private RuntimeDataController rtdController;
+
+	private Thread tinfo;
+	
+	private Date allertDate;
+
+	public MainController(INotifyable parent) {
+		this.parent = parent;
+		this.rtdController = new RuntimeDataController(this);
+		this.mainView = new MainView(this);
+		tinfo = new Thread(rtdController);
+		tinfo.start();
+	}
+
+	@Override
+	public INotifyable getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		if (source instanceof RuntimeDataController && message.equals("UpdateData")) {
+			mainView.SetCoresText(rtdController.GetData().getCores());
+			mainView.SetThreadsText(rtdController.GetData().getThreadData());
+			mainView.SetMemoryText(rtdController.GetData().getMemoryData());
+			mainView.SetFilesProcessedText(rtdController.GetData().getFilesProcessedData());
+			mainView.SetFilesFailedText(rtdController.GetData().getFilesFailedData());
+		} else if (source instanceof RuntimeDataController
+				&& (message.equals("Need More Cores") || message.equals("Need More Memory"))) {
+			double hours = (allertDate.getTime() - new Date().getTime()) / 1000 / 60 / 60;
+			if(hours > 4)
+			{
+				
+			}
+		}
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return mainView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	}
+
+	private void Start() {
+	}
+
+	private void Stop() {
+	}
+
+	private void Log(String text) {
+		mainView.Log(text);
+	}
+
+}

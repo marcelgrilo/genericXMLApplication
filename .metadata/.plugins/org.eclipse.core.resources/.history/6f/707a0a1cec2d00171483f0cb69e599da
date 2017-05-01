@@ -1,0 +1,44 @@
+package control.ui;
+
+import control.ui.interfaces.INotifyable;
+import model.app.RuntimeData;
+
+public class RuntimeDataController implements Runnable, INotifyable {
+
+	private RuntimeData data;
+	
+	
+	
+	public RuntimeDataController()
+	{
+		data = new RuntimeData();
+	
+	}
+	
+	@Override
+	public void run() {
+		try {
+			// espera 2 segundos
+			Thread.sleep(2000);
+		
+			
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public INotifyable getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

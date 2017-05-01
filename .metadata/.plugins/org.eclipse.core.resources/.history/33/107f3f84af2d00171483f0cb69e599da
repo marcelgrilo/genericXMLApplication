@@ -1,0 +1,7 @@
+package view;
+
+import javax.swing.JPanel;
+
+public class ConfigView extends JPanel implements IView {
+
+}

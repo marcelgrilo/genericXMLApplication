@@ -19,7 +19,7 @@ import services.exceptions.UnpackException;
 public class UnzipService implements IUnpack 
 {
 	@Override
-	public File Unpack(File compressedFile) throws UnpackException 
+	public synchronized File Unpack(File compressedFile) throws UnpackException 
 	{
 		ArrayList<File> files = new ArrayList<File>();
 		byte[] buffer = new byte[1024];
@@ -42,7 +42,6 @@ public class UnzipService implements IUnpack
 				{
 					continue;
 				}
-
 				File newFile = new File("UnpackedFiles" + File.separator + fileName);
 
 				FileOutputStream fos = new FileOutputStream(newFile);

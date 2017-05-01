@@ -1,0 +1,84 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+
+import control.ui.interfaces.IViewController;
+import model.app.Server;
+import view.interfaces.IView;
+
+public class ConfigView extends JPanel implements IView {
+
+	private static final long serialVersionUID = 1L;
+	
+	private JButton btnAddServer;
+	private JButton btnRemoveServer;
+
+	private JTextField serverURL;
+	
+	private JList<String> serverList;
+	
+	private IViewController controller;
+	
+	private DefaultListModel<String> listModel = new DefaultListModel<String>();
+	
+	public ConfigView(IViewController controller)
+	{
+		this.controller = controller;
+		
+		btnAddServer = new JButton("Adicionar Servidor na lsita");
+		btnAddServer.setActionCommand("ADD");
+		btnAddServer.addActionListener(controller.getActionListener());
+		
+		btnRemoveServer = new JButton("Remover Servidor da lsita");
+		btnRemoveServer.setActionCommand("DELL");
+		btnRemoveServer.addActionListener(controller.getActionListener());
+		
+		serverURL = new JTextField();
+		
+		serverList = new JList<String>(listModel);
+		serverList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		this.setLayout(new BorderLayout());
+		
+		JPanel top = new JPanel(new BorderLayout());
+		top.add(serverURL, BorderLayout.CENTER);
+		top.add(btnAddServer, BorderLayout.LINE_END);		
+		this.add(top,BorderLayout.PAGE_START);
+		
+		this.add(serverList,BorderLayout.CENTER);
+		
+		JPanel bot = new JPanel(new FlowLayout());
+		bot.add(btnRemoveServer);
+		this.add(bot, BorderLayout.PAGE_END);			
+	}
+	
+	public void UpdateServerList(List<Server> list)
+	{
+		listModel.clear();
+		for (Server server : list) {
+			listModel.addElement(server.getServer());		
+		}
+		serverList.clearSelection();	        
+	}
+	
+	public String GetListSelectedValue()
+	{
+		return serverList.getSelectedValue();	
+	}
+	
+	@Override
+	public Component getViewComponent() {
+		return this;
+	}
+
+}

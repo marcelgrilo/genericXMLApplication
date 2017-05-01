@@ -1,0 +1,82 @@
+package control.ui;
+
+import control.ui.interfaces.INotifyable;
+import model.app.RuntimeData;
+
+public class RuntimeDataController implements Runnable, INotifyable {
+
+	private RuntimeData data;
+
+	private INotifyable parent;
+
+	private int processedFiles;
+	private int failedFiles;
+
+	public RuntimeDataController(INotifyable parent) {
+		data = new RuntimeData();
+		this.parent = parent;
+		this.processedFiles = 0;
+		this.failedFiles = 0;
+	}
+
+	public void FileProcessed() {
+		processedFiles++;
+	}
+
+	public void FileFailed() {
+		failedFiles++;
+	}
+	
+	public RuntimeData GetData()
+	{
+		return data;
+	}
+
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				// espera 3 segundos
+				Thread.sleep(3000);
+
+				UpdateData();
+
+				parent.notifyController(this, "UpdateData");
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void UpdateData() {
+
+		if (Runtime.getRuntime().availableProcessors() <= 2) {
+			data.setCores(String.format("Cores : %1d !!!NEED UPGRADE!!!", Runtime.getRuntime().availableProcessors()));
+			parent.notifyController(this, "Need Mor Cores");
+		} else {
+			data.setCores(String.format("Cores : %1d ", Runtime.getRuntime().availableProcessors()));
+		}
+		data.setThreadData(String.format("Threads Used : %1d ", Thread.activeCount()));
+		if ((double) Runtime.getRuntime().freeMemory() / (double) Runtime.getRuntime().totalMemory() < 0.1) {
+			data.setMemoryData(String.format("free memory / total memory :  %1d / %2d !!!NEED UPGRADE!!! ",
+					Runtime.getRuntime().freeMemory(), Runtime.getRuntime().totalMemory()));
+			parent.notifyController(this, "Need More Memory");
+		} else {
+			data.setMemoryData(String.format("free memory / total memory :  %1d / %2d ",
+					Runtime.getRuntime().freeMemory(), Runtime.getRuntime().totalMemory()));
+		}
+		data.setFilesProcessedData(String.format("Files Processed : %1d ", processedFiles));
+		data.setFilesFailedData(String.format("Files Failed: %1d ", failedFiles));
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+
+	}
+
+	@Override
+	public INotifyable getParent() {
+		return this.parent;
+	}
+
+}

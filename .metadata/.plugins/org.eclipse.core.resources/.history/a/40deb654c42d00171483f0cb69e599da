@@ -1,0 +1,65 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+import view.CenterView;
+import view.interfaces.IView;
+
+public class CenterController implements ActionListener, IViewController, IUIController {
+
+	
+	private CenterView centerView;
+
+	private IUIController parent;
+	
+	private ConfigController configController;
+	private MainController mainController;
+	
+	public CenterController(IUIController parent)
+	{
+		this.parent = parent;
+		this.configController = new ConfigController(this);
+		
+		this.centerView = new CenterView(this,this.configController, this.mainController.getV);
+	}	
+	
+	@Override
+	public IUIController getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		if(source instanceof IUIController)
+		{
+			if(message.equals("MAIN_VIEW"))
+			{
+				centerView.ChangeView("Main");
+			}
+			else if(message.equals("CONFIG_VIEW"))
+			{
+				centerView.ChangeView("Config");
+			}
+		}
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return centerView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

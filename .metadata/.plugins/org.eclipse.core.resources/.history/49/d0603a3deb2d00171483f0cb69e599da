@@ -1,0 +1,46 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+import view.MainView;
+import view.interfaces.IView;
+
+public class MainController implements  ActionListener, IViewController, IUIController {
+	
+	private IUIController parent;
+	
+	private MainView mainView;
+	
+	public MainController(IUIController parent)
+	{
+		this.parent = parent;
+		
+		this.mainView = new MainView(this);
+	}
+	@Override
+	public IUIController getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {		
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return mainView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {		
+	}
+
+}

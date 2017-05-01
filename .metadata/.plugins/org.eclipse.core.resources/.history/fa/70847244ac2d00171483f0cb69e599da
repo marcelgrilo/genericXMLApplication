@@ -1,0 +1,51 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
+import control.ui.interfaces.IUIController;
+import view.MenuView;
+import view.interfaces.IView;
+
+public class MenuBarController implements ActionListener, IUIController {
+	
+	private IView menuBarView;
+	
+	public MenuBarController()
+	{
+		this.menuBarView = new MenuView(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals("Exit"))
+		{
+			System.exit( 0 );
+		}
+		else if(e.getActionCommand().equals("Main"))
+		{
+			
+		}
+		else if(e.getActionCommand().equals("Config"))
+		{
+			
+		}
+		else if(e.getActionCommand().equals("About"))
+		{
+			JOptionPane.showMessageDialog(null, "Aplicação GenericXML \n\n Criado por Marcel Mendonca Grilo\nComo uma avaliacao tecnica ");
+		}
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return this.menuBarView;
+	}
+
+}

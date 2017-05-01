@@ -1,0 +1,7 @@
+package control.ui.interfaces;
+
+public interface IUIController {
+
+	public IUIController getParent();
+	
+}

@@ -1,0 +1,22 @@
+package view;
+
+import javax.swing.JFrame;
+
+public class AppView
+{
+
+	private JFrame frame;
+	
+	private JPanel basePanel;
+	
+	public AppView()
+	{
+		frame = new JFrame();
+		frame.setTitle("genericXMLapp");
+		frame.setSize(800, 600);
+		
+		basePanel = new JPanel();
+		
+		frame.add(basePanel)
+	}
+}

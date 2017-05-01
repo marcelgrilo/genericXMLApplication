@@ -1,0 +1,17 @@
+package control;
+
+public class ProcessServerController implements Runnable {
+
+	private Server;
+	
+	public ProcessServerController()
+	{
+		
+	}
+	
+	@Override
+	public void run() {
+				
+	}
+
+}

@@ -1,0 +1,53 @@
+package control;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import control.dao.DataSource;
+import control.dao.ServerDao;
+import control.ui.interfaces.INotifyable;
+import model.app.Server;
+
+public class ServiceController implements Runnable {
+
+	private List<Server> serverList;
+	private EntityManager em = DataSource.createEntityManager();
+	private ServerDao serverDao = new ServerDao(em);
+	
+	private INotifyable controller;
+	
+	private boolean isRunning;
+		
+	private Date lastExecution;	
+	
+	public ServiceController(INotifyable controller)
+	{
+		this.controller = controller;
+		this.isRunning = false;		
+	}	
+	
+	@Override
+	public void run() {
+		//loop principal
+		while(isRunning)
+		{			
+			double hours = (lastExecution.getTime() - new Date().getTime()) / 1000 / 60 / 60;
+			// a cada 24 horas executa o processamento.
+			if (hours > 24) {
+				
+				
+				
+				// fase de downloads dos arquicos.
+				// fase de descompactação dos arquivos.
+				// fase depersistencia. 
+				
+				lastExecution = new Date();
+			}
+		}			
+	}
+
+	
+	
+}

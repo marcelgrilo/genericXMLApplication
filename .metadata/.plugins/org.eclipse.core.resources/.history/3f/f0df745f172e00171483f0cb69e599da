@@ -1,0 +1,105 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import control.ServiceController;
+import control.ui.interfaces.INotifyable;
+import control.ui.interfaces.IViewController;
+import view.MainView;
+import view.interfaces.IView;
+
+public class MainController implements ActionListener, IViewController, INotifyable {
+
+	private INotifyable parent;
+
+	private MainView mainView;
+
+	private RuntimeDataController rtdController;
+
+	private Thread tinfo;
+	private Thread tservice;
+
+	private Date allertDate;
+
+	public MainController(INotifyable parent) {
+		this.parent = parent;
+		this.rtdController = new RuntimeDataController(this);
+		this.mainView = new MainView(this);
+		this.tinfo = new Thread(rtdController);
+		this.tinfo.start();
+	}
+
+	@Override
+	public INotifyable getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		if (source instanceof RuntimeDataController && message.equals("UpdateData")) {
+			mainView.SetCoresText(rtdController.GetData().getCores());
+			mainView.SetThreadsText(rtdController.GetData().getThreadData());
+			mainView.SetMemoryText(rtdController.GetData().getMemoryData());
+			mainView.SetFilesProcessedText(rtdController.GetData().getFilesProcessedData());
+			mainView.SetFilesFailedText(rtdController.GetData().getFilesFailedData());
+		} else if (source instanceof RuntimeDataController
+				&& (message.equals("Need More Cores") || message.equals("Need More Memory"))) {
+			double hours = (allertDate.getTime() - new Date().getTime()) / 1000 / 60 / 60;
+			if (hours > 4) {
+				mainView.Alert(message);
+				allertDate = new Date();
+			}
+		} else if (source instanceof ServiceController) {
+			this.Log(message);
+		}
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return mainView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("START")) {
+			Start();
+		} else if (e.getActionCommand().equals("STOP")) {
+			Stop();
+		}
+
+	}
+
+	boolean started = false;
+	// inicializa o servico
+	private void Start() {
+		if(!started){
+		tservice = new Thread(new ServiceController(this));
+		tservice.start();
+		this.Log("Service Started");
+		}else{
+			this.Log("Already Started");
+		}
+	}	
+
+	// para o servico
+	private void Stop() {
+		if(tservice.isAlive())
+		{
+			tservice.interrupt();
+			tservice = null;
+		}
+		this.Log("Service Stoped");
+	}
+
+	public void Log(String text) {
+		mainView.Log(text);
+	}
+
+}

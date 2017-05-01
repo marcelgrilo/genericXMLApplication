@@ -1,0 +1,45 @@
+package control;
+
+import java.io.File;
+import java.util.List;
+
+import model.app.Server;
+import services.ServerFileReader;
+import services.UnzipService;
+import services.Interfaces.IUnpack;
+import services.exceptions.UnpackException;
+
+public class ProcessServerController implements Runnable {
+
+	private Server server;
+	private IUnpack unpackService;
+	public ProcessServerController(Server server)
+	{
+		this.server = server;
+		this.unpackService = new UnzipService(); 
+	}
+	
+	@Override
+	public void run() {
+		ServerFileReader sfr = new ServerFileReader(server.getUrl(), server.getPort(), server.getUser(), server.getPassword());		
+		
+		List<File> zippedFiles = sfr.SaveCompactedXML(Runtime.getRuntime().freeMemory());
+		if(sfr.getFilesFailed()>0)
+		{
+			//log 
+		}
+		
+		for (File file : zippedFiles) {
+			try {
+				for (Info info : InfoFactory.(unpackService.Unpack(file))) {
+					
+				}
+				
+			} catch (UnpackException e) {
+				e.printStackTrace();
+				//log 
+			}  
+		}
+	}
+
+}

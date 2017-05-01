@@ -1,0 +1,10 @@
+package app;
+
+import control.ui.MainFrameController;
+
+public class Main {
+	public static void Main(String []args)
+	{
+		MainFrameController c = new MainFrameController();
+	}
+}

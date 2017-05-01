@@ -1,0 +1,33 @@
+package model.app;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Server {
+	
+	@Id
+	@GeneratedValue
+	private int Id;
+	@Column
+	private String server;
+	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int Id) {
+		this.Id = Id;
+	}
+
+	public String getServer() {
+		return server;
+	}
+
+	public void setServer(String server) {
+		this.server = server;
+	}
+	
+}

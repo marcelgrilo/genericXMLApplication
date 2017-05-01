@@ -8,9 +8,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import model.Info;
 import model.xml.InfoListXml;
 import model.xml.InfoXml;
+import model.xml.persist.Info;
 import services.Interfaces.IModelFactory;
 
 /**
@@ -41,7 +41,7 @@ public class InfoFactory implements IModelFactory<List<Info>, InfoListXml> {
 	 * Converte InfoListXml em List<Info>
 	 */
 	@Override
-	public List<Info> Convert(InfoListXml xmlModel) {
+	public synchronized List<Info> Convert(InfoListXml xmlModel) {
 		List<Info> infoList = new ArrayList<Info>();
 		for (InfoXml infoXml : xmlModel.getInfoXmls()) {
 			Info i = new Info();

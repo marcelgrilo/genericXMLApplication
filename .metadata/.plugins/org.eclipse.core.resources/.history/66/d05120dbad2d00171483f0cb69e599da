@@ -1,0 +1,8 @@
+package control.ui.interfaces;
+
+public interface IUIController {
+
+	public IUIController getParent();
+	public void notifyParent(Object sourceString message);
+	
+}

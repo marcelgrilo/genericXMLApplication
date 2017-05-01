@@ -1,0 +1,10 @@
+package control.ui;
+
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+
+public class CenterController implements ActionListener, IViewController, IUIController {
+
+}

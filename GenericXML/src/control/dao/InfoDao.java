@@ -2,7 +2,9 @@ package control.dao;
 
 import javax.persistence.EntityManager;
 
-public class InfoDao extends GenericDao<InfoDao, Integer> {
+import model.xml.persist.Info;
+
+public class InfoDao extends GenericDao<Info, Integer> {
 
     public InfoDao(EntityManager entityManager) {
         super(entityManager);

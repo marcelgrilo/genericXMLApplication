@@ -1,0 +1,6 @@
+package control.ui.interfaces;
+
+public interface INotifyable {
+
+	public void notifyController(Object source, String message);
+}

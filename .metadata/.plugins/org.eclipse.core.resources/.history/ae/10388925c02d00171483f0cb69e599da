@@ -1,0 +1,14 @@
+package testing;
+
+import org.junit.Test;
+
+import control.ui.MainFrameController;
+
+public class InterfaceTest {
+
+	@Test
+	public void test() {
+		
+	}
+
+}

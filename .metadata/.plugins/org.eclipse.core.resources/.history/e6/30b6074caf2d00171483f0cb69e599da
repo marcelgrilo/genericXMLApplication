@@ -1,0 +1,44 @@
+package view;
+
+import java.awt.CardLayout;
+import java.awt.Component;
+
+import javax.swing.JPanel;
+
+import view.interfaces.IChangeView;
+import view.interfaces.IView;
+
+public class CenterView  extends JPanel implements IChangeView, IView 
+{
+
+	private static final long serialVersionUID = 1L;
+
+	private IView mainView;
+	private IView mainConfig;
+	
+	public CenterView()
+	{
+		//this.mainView;
+		
+		this.setLayout(new CardLayout());
+	}
+	
+	@Override
+	public void ChangeView(String viewName) 
+	{
+		 if(viewName.equals("Main"))
+		{
+			
+		}
+		else if(viewName.equals("Config"))
+		{
+			
+		}
+	}
+
+	@Override
+	public Component getViewComponent() {
+		return this;
+	}
+	
+}

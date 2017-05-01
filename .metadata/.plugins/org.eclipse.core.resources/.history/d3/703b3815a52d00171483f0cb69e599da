@@ -1,0 +1,35 @@
+package view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
+public class MenuPanel extends JMenuBar implements ActionListener
+{	
+	private static final long serialVersionUID = 1L;
+	
+	private JMenu fileMenu;
+	private JMenu viewMenu;
+	private JMenu aboutMenu;
+	
+	
+	private JMenuItem  exitMeniItem;
+	private JMenuItem  exitMeniItem;
+	private JMenuItem  exitMeniItem;
+	private JMenuItem  exitMeniItem;
+	
+	public MenuPanel()
+	{
+		
+	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

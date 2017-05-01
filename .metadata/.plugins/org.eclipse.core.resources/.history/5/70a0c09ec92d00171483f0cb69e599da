@@ -1,0 +1,18 @@
+package control.dao;
+
+import javax.persistence.EntityManager;
+
+import model.app.Server;
+
+public class ServerDao  extends GenericDao<InfoDao, Integer> {
+
+    public ServerDao(EntityManager entityManager) {
+        super(entityManager);
+    }
+
+    public Server FindByServer(String server)
+    {
+    	
+    }
+    
+}

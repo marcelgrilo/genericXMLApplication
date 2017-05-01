@@ -1,0 +1,42 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+import view.interfaces.IView;
+
+public class MainController implements  ActionListener, IViewController, IUIController {
+
+	@Override
+	public IUIController getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IView getView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

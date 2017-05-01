@@ -1,0 +1,11 @@
+package control.ui;
+
+public class RuntimeDataController implements Runnable {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

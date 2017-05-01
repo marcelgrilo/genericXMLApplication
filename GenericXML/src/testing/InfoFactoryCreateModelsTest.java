@@ -9,7 +9,7 @@ import java.util.List;
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Test;
 
-import model.Info;
+import model.xml.persist.Info;
 import services.InfoFactory;
 
 import static org.hamcrest.CoreMatchers.*;

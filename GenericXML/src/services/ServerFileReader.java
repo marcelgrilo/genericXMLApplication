@@ -13,32 +13,37 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class ServerFileReader {
+
 	private String server = "localhost";
 	private int port = 21;
 	private String user = "user";
 	private String pass = "pass";
+
+	private int filesFailed;
 
 	public ServerFileReader(String server, int port, String user, String pass) {
 		this.server = server;
 		this.port = port;
 		this.user = user;
 		this.pass = pass;
+		this.filesFailed = 0;
 	}
 
-	public List<File> SaveCompactedXML() {
+	public synchronized List<File> SaveCompactedXML(long fileSizeLimit) {
 		List<File> loadedFiles = new ArrayList<File>();
 		FTPClient ftpClient = new FTPClient();
 		try {
 			ftpClient.connect(server, port);
-			ftpClient.login(user, pass);
 			// login
-			if (!ftpClient.login("username", "password")) {
+			if (!ftpClient.login(user, pass)) {
 				ftpClient.logout();
 			}
+
 			int reply = ftpClient.getReplyCode();
 			if (!FTPReply.isPositiveCompletion(reply)) {
 				ftpClient.disconnect();
 			}
+
 			ftpClient.enterLocalPassiveMode();
 			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
@@ -50,10 +55,15 @@ public class ServerFileReader {
 					if (!file.isFile()) {
 						continue;
 					}
+					// se o tamanho do arquivo for maior que o limite aceito .
+					if (file.getSize() > fileSizeLimit) {
+						filesFailed++;
+						continue;
+					}
 
-					// System.out.println("File is " + file.getName());
 					OutputStream output;
 					output = new FileOutputStream("FtpOtputFiles" + File.separator + file.getName());
+
 					// faz o download do arquivo e salva em FtpOtputFiles
 					ftpClient.retrieveFile(file.getName(), output);
 					output.close();
@@ -74,6 +84,14 @@ public class ServerFileReader {
 			}
 		}
 		return loadedFiles;
+	}
+
+	public int getFilesFailed() {
+		return filesFailed;
+	}
+
+	public void setFilesFailed(int filesFailed) {
+		this.filesFailed = filesFailed;
 	}
 
 }

@@ -1,0 +1,11 @@
+package control;
+
+public class ProcessServerController implements Runnable {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

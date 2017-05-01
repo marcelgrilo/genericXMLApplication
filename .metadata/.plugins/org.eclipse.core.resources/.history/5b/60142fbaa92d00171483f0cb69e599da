@@ -1,0 +1,41 @@
+package view;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import view.interfaces.IView;
+
+public class AppView implements IView
+{
+
+	private JFrame frame;
+	
+	private JPanel basePanel;
+	
+	private JPanel menuPanel;	
+	private JPanel mainPanel;
+	
+	public AppView(IView menuPanel, IView mainPanel)
+	{
+		frame = new JFrame();
+		frame.setTitle("genericXMLapp");
+		frame.setSize(800, 600);
+		
+		basePanel = new JPanel();
+		
+		PrepareBasePanel();
+		
+		frame.add(basePanel);
+		frame.setVisible(true);		
+	}
+	
+	private void PrepareBasePanel()
+	{
+		basePanel.setLayout(new BorderLayout());
+		basePanel.add(menuPanel, BorderLayout.PAGE_START);
+		basePanel.add(mainPanel, BorderLayout.CENTER);
+	}
+	
+}

@@ -1,0 +1,50 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import view.interfaces.IView;
+
+public class ConfigView extends JPanel implements IView {
+
+	private JButton btnAddServer;
+	private JButton btnRemoveServer;
+
+	private JTextField serverURL;
+	
+	private JList serverList;
+	
+	public ConfigView()
+	{
+		btnAddServer = new JButton("Adicionar Servidor na lsita");
+		btnRemoveServer = new JButton("Remover Servidor da lsita");
+		
+		serverURL = new JTextField();
+		
+		serverList = new JList();
+		
+		this.setLayout(new BorderLayout());
+		
+		JPanel top = new JPanel();
+		top.setLayout(new BorderLayout());
+		top.add(serverURL, BorderLayout.CENTER);
+		top.add(btnAddServer, BorderLayout.LINE_END);
+		
+		this.add
+		
+		
+	}
+	
+	@Override
+	public Component getViewComponent() {
+		return this;
+	}
+
+}

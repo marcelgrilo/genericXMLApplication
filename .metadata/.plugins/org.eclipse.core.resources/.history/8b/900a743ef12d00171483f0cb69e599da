@@ -1,0 +1,48 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.INotifyable;
+import control.ui.interfaces.IViewController;
+import view.MainView;
+import view.interfaces.IView;
+
+public class MainController implements  ActionListener, IViewController, INotifyable  {
+	
+	private INotifyable parent;
+	
+	private MainView mainView;
+	
+	private RuntimeDataController rtdController;
+	
+	public MainController(INotifyable parent)
+	{
+		this.parent = parent;
+		this.rtdController = new RuntimeDataController(this);	
+		this.mainView = new MainView(this);
+	}
+	@Override
+	public INotifyable getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {		
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return mainView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {		
+	}
+
+}

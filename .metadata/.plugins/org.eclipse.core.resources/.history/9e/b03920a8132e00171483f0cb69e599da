@@ -1,0 +1,22 @@
+package control;
+
+import model.app.Server;
+import services.ServerFileReader;
+
+public class ProcessServerController implements Runnable {
+
+	private Server server;
+	
+	public ProcessServerController(Server server)
+	{
+		this.server = server;
+	}
+	
+	@Override
+	public void run() {
+		ServerFileReader sfr = new ServerFileReader(server.getUrl(), server.getPort(), server.getUser(), server.getPassword());
+		
+		sfr.SaveCompactedXML(Runtime.getRuntime().freeMemory());
+	}
+
+}

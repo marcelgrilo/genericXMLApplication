@@ -1,0 +1,53 @@
+package control;
+
+import java.io.File;
+import java.util.List;
+
+import model.app.Server;
+import model.xml.persist.Info;
+import services.InfoFactory;
+import services.ServerFileReader;
+import services.UnzipService;
+import services.Interfaces.IModelFactory;
+import services.Interfaces.IUnpack;
+import services.exceptions.UnpackException;
+import testing.InfoFactoryCreateModelsTest;
+
+public class ProcessServerController implements Runnable {
+
+	private Server server;
+	private IUnpack unpackService;
+	private InfoFactory factory;
+	
+	public ProcessServerController(Server server)
+	{
+		this.server = server;
+		this.unpackService = new UnzipService();
+		this.factory = new InfoFactory();
+		
+	}
+	
+	@Override
+	public void run() {
+		ServerFileReader sfr = new ServerFileReader(server.getUrl(), server.getPort(), server.getUser(), server.getPassword());		
+		
+		List<File> zippedFiles = sfr.SaveCompactedXML(Runtime.getRuntime().freeMemory());
+		if(sfr.getFilesFailed()>0)
+		{
+			//log 
+		}
+		
+		for (File file : zippedFiles) {
+			try {
+				for (Info info : factory.CreateModels(unpackService.Unpack(file))) {
+					
+				}
+				
+			} catch (UnpackException e) {
+				e.printStackTrace();
+				//log 
+			}  
+		}
+	}
+
+}

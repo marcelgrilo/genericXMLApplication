@@ -1,0 +1,52 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.IUIController;
+import control.ui.interfaces.IViewController;
+import view.MenuView;
+import view.interfaces.IView;
+
+public class CenterController implements ActionListener, IViewController, IUIController {
+
+	
+	private IView centerView;
+
+	private IUIController parent;
+	
+	public CenterController(IUIController parent)
+	{
+		this.parent = parent;
+		this.centerView = new ConterView(this);
+	}
+	
+	
+	@Override
+	public IUIController getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public void notifyParent(Object source, String message) {
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IView getView() {
+		// TODO Auto-generated method stub
+		return centerView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

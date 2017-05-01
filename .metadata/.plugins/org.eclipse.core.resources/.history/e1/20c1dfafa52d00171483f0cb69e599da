@@ -1,0 +1,43 @@
+package view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+import control.ui.MenuController;
+
+public class MenuPanel extends JMenuBar
+{	
+	private static final long serialVersionUID = 1L;
+	
+	private MenuController menuController = new MenuController();
+	
+	private JMenu fileMenu;
+	private JMenu viewMenu;
+	private JMenu aboutMenu;
+		
+	private JMenuItem  exitMeniItem;
+	private JMenuItem  configMeniItem;
+	private JMenuItem  mainMeniItem;
+	private JMenuItem  aboutMeniItem;
+	
+	public MenuPanel()
+	{
+		fileMenu = new JMenu("File");
+		viewMenu = new JMenu("View");
+		aboutMenu = new JMenu("About");
+		
+		exitMeniItem = new JMenuItem("exit");
+		exitMeniItem.addActionListener(menuController);
+		
+		this.add(fileMenu);
+		this.add(viewMenu);
+		this.add(aboutMenu);
+	}
+	
+
+
+}

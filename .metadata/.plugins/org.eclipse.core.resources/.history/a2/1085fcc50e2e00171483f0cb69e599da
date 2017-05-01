@@ -1,0 +1,37 @@
+package control;
+
+import java.util.Date;
+
+import control.ui.interfaces.INotifyable;
+
+public class ServiceController implements Runnable {
+
+	private INotifyable controller;
+	
+	private boolean isRunning;
+		
+	private Date allertDate;
+	
+	
+	public ServiceController(INotifyable controller)
+	{
+		this.controller = controller;
+		this.isRunning = false;		
+	}
+	
+	
+	@Override
+	public void run() {
+		//loop principal
+		while(isRunning)
+		{			
+			double hours = (allertDate.getTime() - new Date().getTime()) / 1000 / 60 / 60;
+			if (hours > 24) {
+				allertDate = new Date();
+			}
+		}			
+	}
+
+	
+	
+}

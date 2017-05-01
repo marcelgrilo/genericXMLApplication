@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class DataSource {
 
-	 private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("genericXML-PU");
+	 private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("genericXMLPU");
 
 	    private DataSource(){}
 

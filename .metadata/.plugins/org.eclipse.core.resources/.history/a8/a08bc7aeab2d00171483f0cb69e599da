@@ -1,0 +1,11 @@
+package control.ui.interfaces;
+
+import java.awt.event.ActionListener;
+
+public interface IUIController {
+
+	public ActionListener getActionListener();
+	
+	public IView getView();
+	
+}

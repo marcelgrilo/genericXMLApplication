@@ -1,0 +1,28 @@
+package control.ui;
+
+public class RuntimeDataController implements Runnable {
+
+	private RuntimeData data;
+	
+	
+	
+	public RuntimeDataController()
+	{
+		
+	}
+	
+	@Override
+	public void run() {
+		try {
+			// espera 2 segundos
+			Thread.sleep(2000);
+		
+			
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+
+}

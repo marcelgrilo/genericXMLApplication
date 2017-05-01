@@ -1,0 +1,27 @@
+1493558046667	Delete element
+1493558375190	Rename type 'IchangeView'
+1493559673479	Rename type 'UIController'
+1493559857111	Rename type 'CenterPanel'
+1493559868913	Rename type 'MenuPanel'
+1493559875326	Rename type 'Menuview'
+1493559915102	Delete element
+1493560430117	Rename type 'IUIController'
+1493560594809	Rename type 'IController'
+1493562195571	Rename method 'notifyParent'
+1493568713307	Move compilation unit
+1493568894488	Delete element
+1493568920735	Move compilation unit
+1493570881862	Rename field 'configController'
+1493570891066	Rename field 'mainController'
+1493571895215	Move compilation unit
+1493576083738	Move file
+1493576096923	Move file
+1493576100794	Delete element
+1493576117981	Move file
+1493576127567	Move file
+1493576130985	Delete element
+1493577436356	Delete elements
+1493582715319	Rename field 'server'
+1493582734740	Rename method 'getServer'
+1493582743082	Rename method 'setServer'
+1493587571313	Delete element

@@ -1,0 +1,39 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.IViewController;
+import view.AppView;
+import view.interfaces.IView;
+
+public class MainFrameController implements ActionListener, IViewController {
+
+	private IView mainFrame;
+	
+	private IView menuView;
+	private IView mainView;
+	
+	
+	public MainFrameController()
+	{
+		
+		mainFrame = new AppView(menuView, mainView);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return this.mainFrame;
+	}
+	
+}

@@ -1,0 +1,9 @@
+package model.app;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Server {
+
+	privat
+}

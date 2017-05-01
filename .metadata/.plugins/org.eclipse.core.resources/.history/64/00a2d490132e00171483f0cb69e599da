@@ -1,0 +1,20 @@
+package control;
+
+import model.app.Server;
+
+public class ProcessServerController implements Runnable {
+
+	private Server server;
+	
+	public ProcessServerController(Server server)
+	{
+		this.server = server;
+	}
+	
+	@Override
+	public void run() 
+	{
+				
+	}
+
+}

@@ -8,7 +8,9 @@
   </facet>
   <facet id="jpt.jpa">
     <node name="libprov">
-      <node name="last-provider-used"/>
+      <node name="last-provider-used">
+        <attribute name="2.1" value="jpa-no-op-library-provider"/>
+      </node>
     </node>
   </facet>
 </root>

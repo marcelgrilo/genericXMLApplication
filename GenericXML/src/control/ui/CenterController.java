@@ -1,0 +1,64 @@
+package control.ui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.ui.interfaces.INotifyable;
+import control.ui.interfaces.IViewController;
+import view.CenterView;
+import view.interfaces.IView;
+
+public class CenterController implements ActionListener, IViewController, INotifyable {
+	
+	private CenterView centerView;
+
+	private INotifyable parent;
+	
+	private ConfigController configController;
+	private MainController mainController;
+	
+	public CenterController(INotifyable parent)
+	{
+		this.parent = parent;
+		this.configController = new ConfigController(this);
+		this.mainController = new MainController(this);
+		
+		this.centerView = new CenterView(this, this.configController.getView(), this.mainController.getView());
+		this.centerView.ChangeView("MAIN_VIEW");
+	}	
+	
+	@Override
+	public INotifyable getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public void notifyController(Object source, String message) {
+		if(source instanceof INotifyable)
+		{
+			if(message.equals("MAIN_VIEW"))
+			{
+				centerView.ChangeView("MAIN_VIEW");
+			}
+			else if(message.equals("CONFIG_VIEW"))
+			{
+				centerView.ChangeView("CONFIG_VIEW");
+			}
+		}
+	}
+
+	@Override
+	public ActionListener getActionListener() {
+		return this;
+	}
+
+	@Override
+	public IView getView() {
+		return centerView;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+	}
+
+}
