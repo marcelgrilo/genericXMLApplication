@@ -58,10 +58,15 @@ Foi utilizado MySql junto com o hybernate para a persistência dos dados. Assim,
 O sistema de UI foi criado para seguir um sistema hierárquico da forma:
 MainFrameController
 >--MenuBarrController
+
 >--CenterControlelr
+
 >----ConfigController
+
 >----MainController
+
 >------RuntimeDataController
+
 >------Outros controllers(que não são da camada de ui)
 
 As Views foram criadas da forma a evitar qualquer lógica de negócios, sendo que existe um sistema de comunicação com seus controllers correspondentes através das interfaces IChangeView e IView
