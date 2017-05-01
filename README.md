@@ -14,7 +14,8 @@ Ao acionar o menu View > Config, navega-se para a tela de gestão de servidores,
 ## O formato dos arquivos:
 Os arquivos XML devem ter a seguinte identidade.
 (neste caso, o modelo a ser mapeado é apenas o Info)
-´´´<infoList>
+```
+<infoList>
 	<info>
 		<ip>242.157.159.46</ip>
 		<port>2581</port>
@@ -23,7 +24,7 @@ Os arquivos XML devem ter a seguinte identidade.
 	...
 	...
 </infoList>
-´´´
+```
 
 A aplicação está preparada para novos modelos de xml, bantando apenas criar novas classes de mapeamento para tais modelos (Foi utilizado JAXB para o mapeamento de XML para objeto JAVA).
 
@@ -56,12 +57,12 @@ Foi utilizado MySql junto com o hybernate para a persistência dos dados. Assim,
 ## UI, Views e Controller
 O sistema de UI foi criado para seguir um sistema hierárquico da forma:
 MainFrameController
---MenuBarrController
---CenterControlelr
-----ConfigController
-----MainController
-------RuntimeDataController
-------Outros controllers(que não são da camada de ui)
+>--MenuBarrController
+>--CenterControlelr
+>----ConfigController
+>----MainController
+>------RuntimeDataController
+>------Outros controllers(que não são da camada de ui)
 
 As Views foram criadas da forma a evitar qualquer lógica de negócios, sendo que existe um sistema de comunicação com seus controllers correspondentes através das interfaces IChangeView e IView
 
